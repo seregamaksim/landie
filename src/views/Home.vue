@@ -48,6 +48,7 @@
 
 <script>
 // @ is an alias to /src
+import anime from 'animejs'
 import Button from '@/components/Button'
 import AdvantagesItem from '@/components/AdvantagesItem'
 export default {
@@ -61,6 +62,31 @@ export default {
   }),
   components: {
     Button, AdvantagesItem
+  },
+  mounted () {
+    // eslint-disable-next-line no-unused-vars
+    const tl = anime.timeline({
+      easing: 'linear',
+      duration: 1500
+    }).add({
+      targets: '.home',
+      translateY: [100, 0],
+      opacity: [0, 1]
+    })
+  },
+  beforeRouteLeave (to, from, next) {
+    // eslint-disable-next-line no-unused-vars
+    const tl = anime.timeline({
+      easing: 'linear',
+      duration: 1500
+    }).add({
+      targets: '.home',
+      translateY: [0, 100],
+      opacity: [1, 0],
+      complete: function () {
+        next()
+      }
+    })
   }
 }
 </script>
