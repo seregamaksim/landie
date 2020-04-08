@@ -48,7 +48,7 @@
 
 <script>
 // @ is an alias to /src
-import anime from 'animejs'
+import anime from 'animejs/lib/anime.es.js'
 import Button from '@/components/Button'
 import AdvantagesItem from '@/components/AdvantagesItem'
 export default {
@@ -66,13 +66,23 @@ export default {
   mounted () {
     // eslint-disable-next-line no-unused-vars
     const tl = anime.timeline({
-      easing: 'linear',
-      duration: 1500
+      easing: 'linear'
     }).add({
-      targets: '.home',
+      targets: '.page-header',
+      translateY: ['-100%', 0],
+      opacity: [0, 1],
+      duration: 500
+    }, 0).add({
+      targets: '.first-block__description',
       translateY: [100, 0],
-      opacity: [0, 1]
-    })
+      opacity: [0, 1],
+      duration: 800
+    }).add({
+      targets: '.first-block__img',
+      translateX: ['60%', 0],
+      opacity: [0, 1],
+      duration: 600
+    }, '-=500')
   },
   beforeRouteLeave (to, from, next) {
     // eslint-disable-next-line no-unused-vars
@@ -80,13 +90,15 @@ export default {
       easing: 'linear',
       duration: 1500
     }).add({
+      targets: '.page-header',
+      translateY: [0, '-100%'],
+      opacity: [1, 0]
+    }, 0).add({
       targets: '.home',
       translateY: [0, 100],
-      opacity: [1, 0],
-      complete: function () {
-        next()
-      }
-    })
+      opacity: [1, 0]
+    }, 0)
+    tl.finished.then(next)
   }
 }
 </script>

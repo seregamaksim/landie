@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import anime from 'animejs'
+import anime from 'animejs/lib/anime.es.js'
 export default {
   mounted () {
     // eslint-disable-next-line no-unused-vars
@@ -13,10 +13,14 @@ export default {
       easing: 'linear',
       duration: 1500
     }).add({
+      targets: '.page-header',
+      translateY: ['-100%', 0],
+      opacity: [0, 1]
+    }, 0).add({
       targets: '.about',
       translateX: [-100, 0],
       opacity: [0, 1]
-    })
+    }, 0)
   },
   beforeRouteLeave (to, from, next) {
     // eslint-disable-next-line no-unused-vars
@@ -24,13 +28,15 @@ export default {
       easing: 'linear',
       duration: 1500
     }).add({
+      targets: '.page-header',
+      translateY: [0, '-100%'],
+      opacity: [1, 0]
+    }, 0).add({
       targets: '.about',
       translateX: [0, -100],
-      opacity: [1, 0],
-      complete: () => {
-        next()
-      }
-    })
+      opacity: [1, 0]
+    }, 0)
+    tl.finished.then(next)
   }
 }
 </script>
