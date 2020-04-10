@@ -25,10 +25,10 @@ import anime from 'animejs/lib/anime.es.js'
 export default {
   data: () => ({
     newTodoText: '',
-    newTodoId: 1,
+    newTodoId: 3,
     todoList: [
-      // { id: 1, text: 'Купить хлеб' },
-      // { id: 2, text: 'Поработать' }
+      { id: 1, text: 'Купить хлеб' },
+      { id: 2, text: 'Поработать' }
     ]
   }),
   methods: {

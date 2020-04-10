@@ -12,7 +12,7 @@ export default {
     links: [
       { title: 'Home', url: '/' },
       { title: 'About', url: '/about' },
-      { title: 'Contact', url: '/contact' }
+      { title: 'Calculator', url: '/calculator' }
     ]
   })
 }
