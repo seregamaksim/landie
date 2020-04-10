@@ -95,7 +95,6 @@ export default {
       opacity: [1, 0]
     }, 0).add({
       targets: '.home',
-      translateY: [0, 100],
       opacity: [1, 0]
     }, 0)
     tl.finished.then(next)
