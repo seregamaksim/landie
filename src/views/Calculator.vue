@@ -1,25 +1,25 @@
 <template>
   <div class="calculator-page">
-    <form class="calculator" action="">
-      <input class="calculator__total" type="text" value="0">
+    <form @submit.prevent="" class="calculator" action="">
+      <input @keyup.enter="calc" class="calculator__total" v-model="result" type="text" value="0">
       <div class="calculator__wrap-btn">
-        <button class="calculator__btn calculator__btn--clear">AC</button>
-        <button class="calculator__btn calculator__btn--control">/</button>
-        <button class="calculator__btn">7</button>
-        <button class="calculator__btn">8</button>
-        <button class="calculator__btn">9</button>
-        <button class="calculator__btn calculator__btn--control">*</button>
-        <button class="calculator__btn">4</button>
-        <button class="calculator__btn">5</button>
-        <button class="calculator__btn">6</button>
-        <button class="calculator__btn calculator__btn--control">-</button>
-        <button class="calculator__btn">1</button>
-        <button class="calculator__btn">2</button>
-        <button class="calculator__btn">3</button>
-        <button class="calculator__btn calculator__btn--control">+</button>
-        <button class="calculator__btn calculator__btn--zero">0</button>
-        <button class="calculator__btn">.</button>
-        <button class="calculator__btn calculator__btn--control">=</button>
+        <button @click="reset" class="calculator__btn calculator__btn--clear">AC</button>
+        <button @click="input($event.toElement.innerText)" class="calculator__btn calculator__btn--control">/</button>
+        <button @click="input($event.toElement.innerText)" class="calculator__btn">7</button>
+        <button @click="input($event.toElement.innerText)" class="calculator__btn">8</button>
+        <button @click="input($event.toElement.innerText)" class="calculator__btn">9</button>
+        <button @click="input($event.toElement.innerText)" class="calculator__btn calculator__btn--control">*</button>
+        <button @click="input($event.toElement.innerText)" class="calculator__btn">4</button>
+        <button @click="input($event.toElement.innerText)" class="calculator__btn">5</button>
+        <button @click="input($event.toElement.innerText)" class="calculator__btn">6</button>
+        <button @click="input($event.toElement.innerText)" class="calculator__btn calculator__btn--control">-</button>
+        <button @click="input($event.toElement.innerText)" class="calculator__btn">1</button>
+        <button @click="input($event.toElement.innerText)" class="calculator__btn">2</button>
+        <button @click="input($event.toElement.innerText)" class="calculator__btn">3</button>
+        <button @click="input($event.toElement.innerText)" class="calculator__btn calculator__btn--control">+</button>
+        <button @click="input($event.toElement.innerText)" class="calculator__btn calculator__btn--zero">0</button>
+        <button @click="input($event.toElement.innerText)" class="calculator__btn">.</button>
+        <button @click="calc" class="calculator__btn calculator__btn--control">=</button>
       </div>
     </form>
   </div>
@@ -28,8 +28,21 @@
 <script>
 export default {
   data: () => ({
-    
-  })
+    result: ''
+  }),
+  methods: {
+    input: function (vare) {
+      this.result = this.result.toString()
+      this.result = this.result + vare
+    },
+    reset: function () {
+      this.result = ''
+    },
+    calc: function () {
+      // eslint-disable-next-line no-eval
+      this.result = eval(this.result)
+    }
+  }
 }
 </script>
 
